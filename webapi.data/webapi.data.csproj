@@ -48,11 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProductDbContext.cs" />
     <Compile Include="ProductDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ProductUnitOfwork.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="SqlDBContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,21 +8,21 @@ namespace webapi.data.Repository
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : EntityBase
     {
-        private readonly ProductDBContext productDBContext;
+        private readonly IProductDbContext productDBContext;
 
-        public RepositoryBase(ProductDBContext productDBContext)
+        public RepositoryBase(IProductDbContext productDBContext)
         {
             this.productDBContext = productDBContext;
         }
 
         public void Add(T entity)
         {
-            productDBContext.Set<T>().Add(entity);
+            productDBContext.DbContext.Set<T>().Add(entity);
         }
 
         public void Delete(T entity)
         {
-            productDBContext.Set<T>().Remove(entity);
+            productDBContext.DbContext.Set<T>().Remove(entity);
         }
 
         public void Edit(T entity)
@@ -30,13 +30,13 @@ namespace webapi.data.Repository
             var orgEntity = GetById(entity.Id);
             if (orgEntity != null)
             {
-                productDBContext.Entry(orgEntity).CurrentValues.SetValues(entity);
+                productDBContext.DbContext.Entry(orgEntity).CurrentValues.SetValues(entity);
             }
         }
 
         public T GetById(Guid id)
         {
-            return productDBContext.Set<T>().Find(id);
+            return productDBContext.DbContext.Set<T>().Find(id);
         }
         public void Delete(Guid id)
         {
@@ -46,12 +46,12 @@ namespace webapi.data.Repository
 
         public IEnumerable<T> List()
         {
-            return productDBContext.Set<T>().ToList();
+            return productDBContext.DbContext.Set<T>().ToList();
         }
 
         public IEnumerable<T> List(Expression<Func<T, bool>> predicate)
         {
-            return productDBContext.Set<T>().Where(predicate).ToList();
+            return productDBContext.DbContext.Set<T>().Where(predicate).ToList();
         }
     }
 }

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using webapi.core;
+﻿using webapi.core;
 using webapi.core.Entities;
 
 namespace webapi.data.Repository
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
-        public ProductRepository(ProductDBContext productDBContext) : base(productDBContext)
+        public ProductRepository(IProductDbContext productDBContext) : base(productDBContext)
         {
 
         }

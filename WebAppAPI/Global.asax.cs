@@ -28,6 +28,7 @@ namespace WebAppAPI
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
             builder.RegisterType<ProductService>().As<IProductService>();
             builder.RegisterType<ProductUnitOfwork>().As<IUnitOfWork>();
+            builder.RegisterType<SqlDBContext>().As<IProductDbContext>().InstancePerRequest();
             //builder.RegisterType<IUnitOfWork, ProductUnitOfwork>();
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
